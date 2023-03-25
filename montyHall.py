@@ -20,9 +20,8 @@ for i in range(trials):
     #contestant makes their choice
     contestantDoorChoice = random.randint(0, nDoors - 1)
 
-    #take away all doors except for the one that the contestant chose and
-    #the one that holds that car.
-
+    #remove/open enough doors such that we are left with two doors at the end
+    #note that we cannot open the contestants door or the door that contains the car.
     removeThisMuch = nDoors - 2
     removed = 0
     j = 0
