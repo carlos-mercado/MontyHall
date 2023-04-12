@@ -8,7 +8,8 @@ import random
 class DoorsTrial:
     def __init__(self, nDoors):
         self.nDoors = nDoors
-    def testFunction(self):
+
+    def keepDoor(self):
         wins = 0
         bananaWins = 0
         trials = 100000
@@ -22,55 +23,92 @@ class DoorsTrial:
             #contestant makes their choice
             contestantDoorChoice = random.randint(0, self.nDoors - 1)
 
-            #remove/open enough doors such that we are left with two doors at the end
-            #note that we cannot open the contestants door or the door that contains the car.
-            removeThisMuch = self.nDoors - 2
-            removed = 0
-            j = 0
-            while j < self.nDoors and removed != removeThisMuch:
-                if doors[j] == "CAR" or j == contestantDoorChoice:
-                    j += 1
-                    continue
-                else:
-                    doors[j] = "X"
-                    removed += 1
-                    j += 1
-                    
-
-
-            #now contestant makes a choice. Stay with the originally picked door or choose a new one
-            stayOrChange = random.randint(0, 1)
-            #stayOrChange = 0
-            #stayOrChange = 1
-            #seperate case for where host slips on banana after contestant has made choice and selects random other door
-            bananaResult = doors[random.randint(0, self.nDoors - 1)]
-
-            if stayOrChange == 0: #stay with original door
-                result = doors[contestantDoorChoice];
-            if stayOrChange == 1: #choose a new door
-                del doors[contestantDoorChoice]
-                while "X" in doors:
-                    doors.remove("X")
-                result = doors[0]
-            
-            wins += 1 if result == "CAR" else 0
-            #counting wins for the banana case
-            bananaWins += 1 if bananaResult == "CAR" else 0
+            wins += 1 if doors[contestantDoorChoice] == "CAR" else 0
 
         percentageWins = (wins / trials) * 100
         #calculating banana case wins
         bananaPercentageWins = (bananaWins / trials) * 100
-        print(str(percentageWins) + "% of trials are wins")
+        print(str(percentageWins) + "% of trials are wins if you stay with " + str(self.nDoors) + " doors possible. ")
         #printing banana case wins
-        print("For " + str(self.nDoors) + " trials where host slips on banana " + str(bananaPercentageWins) + "% of trials are wins")
-    
+        print("For " + str(self.nDoors) + " trials where host slips on banana " + str(bananaPercentageWins) + "% of trials are wins.\n")
+
+    def switchDoor(self):
+        wins = 0
+        bananaWins = 0
+        trials = 100000
+
+        for i in range(trials):
+            #creating the "stage"
+            doors = ["GOAT"] * self.nDoors
+            carDoor = random.randint(0, self.nDoors - 1)
+            doors[carDoor] = "CAR"
+
+            #contestant makes their choice
+            contestantDoorChoice = random.randint(0, self.nDoors - 1)
+
+            wins += 1 if doors[contestantDoorChoice] != "CAR" else 0
+
+        percentageWins = (wins / trials) * 100
+        #calculating banana case wins
+        bananaPercentageWins = (bananaWins / trials) * 100
+        print(str(percentageWins) + "% of trials are wins if you always switch. ")
+        #printing banana case wins
+        print("For " + str(self.nDoors) + " trials where host slips on banana " + str(bananaPercentageWins) + "% of trials are wins.\n")
+
+    def randomPick(self):
+        wins = 0
+        bananaWins = 0
+        trials = 100000
+
+        for i in range(trials):
+            #creating the "stage"
+            doors = ["GOAT"] * self.nDoors
+            carDoor = random.randint(0, self.nDoors - 1)
+            doors[carDoor] = "CAR"
+
+            #contestant makes their choice
+            contestantDoorChoice = random.randint(0, self.nDoors - 1)
+
+            if random.randint(0, 1) == 0: #stay with original door
+                wins += 1 if doors[contestantDoorChoice] == "CAR" else 0
+            else: #choose a new door
+                wins += 1 if doors[contestantDoorChoice] != "CAR" else 0
+
+        percentageWins = (wins / trials) * 100
+        #calculating banana case wins
+        bananaPercentageWins = (bananaWins / trials) * 100
+        print(str(percentageWins) + "% of trials are wins if randomly stay and or switch. ")
+        #printing banana case wins
+        print("For " + str(self.nDoors) + " trials where host slips on banana " + str(bananaPercentageWins) + "% of trials are wins.\n")
+
+
+
 trialOf3 = DoorsTrial(3)
-trialOf3.testFunction()
+trialOf3.keepDoor()
+trialOf3.switchDoor()
+trialOf3.randomPick()
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n")
+
 trialOf6 = DoorsTrial(6)
-trialOf6.testFunction()
+trialOf6.keepDoor()
+trialOf6.switchDoor()
+trialOf6.randomPick()
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n")
+
 trialOf9 = DoorsTrial(9)
-trialOf9.testFunction()
+trialOf9.keepDoor()
+trialOf9.switchDoor()
+trialOf9.randomPick()
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n")
+
 trialOf20 = DoorsTrial(20)
-trialOf20.testFunction()
+trialOf20.keepDoor()
+trialOf20.switchDoor()
+trialOf20.randomPick()
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n")
+
 trialOf100 = DoorsTrial(100)
-trialOf100.testFunction()
+trialOf100.keepDoor()
+trialOf100.switchDoor()
+trialOf100.randomPick()
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n")
