@@ -190,6 +190,45 @@ def estimate_policy_singleDeck(policy, num_simulations):
         total_losses += 1 if result == -1 else 0
     return (total_wins,total_losses, total_reward/num_simulations)
 
+
+(p1_wins, p1_losses, p1_er) = estimate_policy(1, 100000)
+(p2_wins, p2_losses, p2_er) = estimate_policy(2, 100000)
+(p3_wins, p3_losses, p3_er) = estimate_policy(3, 100000)
+(p4_wins, p4_losses, p4_er) = estimate_policy(4, 100000)
+(p5_wins, p5_losses, p5_er) = estimate_policy(5, 100000)
+(p1_wins_single, p1_losses_single, p1_er_single) = estimate_policy_singleDeck(1, 100000)
+(p2_wins_single, p2_losses_single, p2_er_single) = estimate_policy_singleDeck(2, 100000)
+(p3_wins_single, p3_losses_single, p3_er_single) = estimate_policy_singleDeck(3, 100000)
+(p4_wins_single, p4_losses_single, p4_er_single) = estimate_policy_singleDeck(4, 100000)
+(p5_wins_single, p5_losses_single, p5_er_single) = estimate_policy_singleDeck(5, 100000)
+
+print("-----------------INFINITE DECK---------------------")
+print("Policy 1 Wins: " + str(p1_wins) + " in 100000 attempts")
+print("----------------------------------------------------")
+print("Policy 2 Wins: " + str(p2_wins) + " in 100000 attempts")
+print("----------------------------------------------------")
+print("Policy 3 Wins: " + str(p3_wins) + " in 100000 attempts")
+print("----------------------------------------------------")
+print("Policy 4 Wins: " + str(p4_wins) + " in 100000 attempts")
+print("----------------------------------------------------")
+print("Policy 5 Wins: " + str(p5_wins) + " in 100000 attempts")
+print("\n-----------------ONE DECK---------------------\n")
+print("Policy 1 Wins: " + str(p1_wins_single) + " in 100000 attempts")
+print("----------------------------------------------------")
+print("Policy 2 Wins: " + str(p2_wins_single) + " in 100000 attempts")
+print("----------------------------------------------------")
+print("Policy 3 Wins: " + str(p3_wins_single) + " in 100000 attempts")
+print("----------------------------------------------------")
+print("Policy 4 Wins: " + str(p4_wins_single) + " in 100000 attempts")
+print("----------------------------------------------------")
+print("Policy 5 Wins: " + str(p5_wins_single) + " in 100000 attempts")
+print("----------------------------------------------------")
+
+
+
+
+
+"""
 (p1_wins, p1_losses, p1_er) = estimate_policy(1, 100000)
 (p2_wins, p2_losses, p2_er) = estimate_policy(2, 100000)
 (p3_wins, p3_losses, p3_er) = estimate_policy(3, 100000)
@@ -197,10 +236,10 @@ def estimate_policy_singleDeck(policy, num_simulations):
 (p5_wins, p5_losses, p5_er) = estimate_policy(5, 100000)
 
 
-#(p1_wins_single, p1_losses_single, p1_er_single) = estimate_policy_singleDeck(1, 100000)
-#(p2_wins_single, p2_losses_single, p2_er_single) = estimate_policy_singleDeck(2, 100000)
-#(p3_wins_single, p3_losses_single, p3_er_single) = estimate_policy_singleDeck(3, 100000)
-#(p4_wins_single, p4_losses_single, p4_er_single) = estimate_policy_singleDeck(4, 100000)
+(p1_wins_single, p1_losses_single, p1_er_single) = estimate_policy_singleDeck(1, 100000)
+(p2_wins_single, p2_losses_single, p2_er_single) = estimate_policy_singleDeck(2, 100000)
+(p3_wins_single, p3_losses_single, p3_er_single) = estimate_policy_singleDeck(3, 100000)
+(p4_wins_single, p4_losses_single, p4_er_single) = estimate_policy_singleDeck(4, 100000)
 (p5_wins_single, p5_losses_single, p5_er_single) = estimate_policy_singleDeck(5, 100000)
 
 xAxis = ["Infinite", "Single"]
@@ -216,3 +255,4 @@ for i in range(len(xAxis)):
     plt.text(i, yAxis[i] + 0.5, str(yAxis[i]), ha='center')
 
 plt.show()
+"""
