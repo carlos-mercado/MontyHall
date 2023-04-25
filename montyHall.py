@@ -74,7 +74,7 @@ class DoorsTrial:
         percentageWins = (wins / trials) * 100
         #calculating banana case wins
         bananaPercentageWins = (bananaLose / trials) * 100
-        print("There is a " + str(percentageWins) + "% chance of winning if you randomly switch to another door if there are originally " + str(self.nDoors) + " doors possible. ")
+        print("There is a " + str(percentageWins) + "% chance of winning if you switch to another door if there are originally " + str(self.nDoors) + " doors possible. ")
         #printing banana case wins
         print("For 100000 trials, there is a " + str(bananaPercentageWins) + "% chance of host slipping on a banana and instantly losing.\n")
 
